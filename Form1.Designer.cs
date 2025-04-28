@@ -35,6 +35,7 @@
             mobilePhoneDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             workPhoneDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             addressDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            Id = new DataGridViewTextBoxColumn();
             personBindingSource = new BindingSource(components);
             splitContainerMain = new SplitContainer();
             splitContainer2 = new SplitContainer();
@@ -52,6 +53,7 @@
             buttonFindPerson = new Button();
             NameLabel = new Label();
             searchTextBoxName = new TextBox();
+            removeCheckBox = new CheckBox();
             buttonRemove = new Button();
             removeTextBoxName = new TextBox();
             label6 = new Label();
@@ -71,7 +73,7 @@
             // 
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { firstNameDataGridViewTextBoxColumn, lastNameDataGridViewTextBoxColumn, mobilePhoneDataGridViewTextBoxColumn, workPhoneDataGridViewTextBoxColumn, addressDataGridViewTextBoxColumn });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { firstNameDataGridViewTextBoxColumn, lastNameDataGridViewTextBoxColumn, mobilePhoneDataGridViewTextBoxColumn, workPhoneDataGridViewTextBoxColumn, addressDataGridViewTextBoxColumn, Id });
             dataGridView1.DataSource = personBindingSource;
             dataGridView1.Location = new Point(3, 3);
             dataGridView1.Name = "dataGridView1";
@@ -107,6 +109,12 @@
             addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
             addressDataGridViewTextBoxColumn.HeaderText = "Address";
             addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            // 
+            // Id
+            // 
+            Id.DataPropertyName = "Id";
+            Id.HeaderText = "GUID";
+            Id.Name = "Id";
             // 
             // personBindingSource
             // 
@@ -154,6 +162,7 @@
             // 
             // splitContainer2.Panel2
             // 
+            splitContainer2.Panel2.Controls.Add(removeCheckBox);
             splitContainer2.Panel2.Controls.Add(buttonRemove);
             splitContainer2.Panel2.Controls.Add(removeTextBoxName);
             splitContainer2.Panel2.Controls.Add(label6);
@@ -168,7 +177,7 @@
             buttonNewContact.Name = "buttonNewContact";
             buttonNewContact.Size = new Size(83, 23);
             buttonNewContact.TabIndex = 13;
-            buttonNewContact.Text = "New Contact";
+            buttonNewContact.Text = "New/Update";
             buttonNewContact.UseVisualStyleBackColor = true;
             buttonNewContact.Click += NewContactEvent;
             // 
@@ -289,8 +298,19 @@
             searchTextBoxName.Size = new Size(100, 23);
             searchTextBoxName.TabIndex = 0;
             // 
+            // removeCheckBox
+            // 
+            removeCheckBox.AutoSize = true;
+            removeCheckBox.Location = new Point(49, 37);
+            removeCheckBox.Name = "removeCheckBox";
+            removeCheckBox.Size = new Size(15, 14);
+            removeCheckBox.TabIndex = 15;
+            removeCheckBox.UseVisualStyleBackColor = true;
+            removeCheckBox.CheckStateChanged += ConfirmDelete;
+            // 
             // buttonRemove
             // 
+            buttonRemove.Enabled = false;
             buttonRemove.Font = new Font("Segoe UI", 8F);
             buttonRemove.Location = new Point(67, 32);
             buttonRemove.Name = "buttonRemove";
@@ -343,11 +363,6 @@
         #endregion
 
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn mobilePhoneDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn workPhoneDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private BindingSource personBindingSource;
         private SplitContainer splitContainerMain;
         private SplitContainer splitContainer2;
@@ -368,5 +383,12 @@
         private Button buttonRemove;
         private TextBox removeTextBoxName;
         private Label label6;
+        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn mobilePhoneDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn workPhoneDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn Id;
+        private CheckBox removeCheckBox;
     }
 }

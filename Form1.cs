@@ -7,7 +7,6 @@ namespace Assignment_4._1._1
         public Form1()
         {
             InitializeComponent();
-            // initial seed data
             SeedData();
 
             RefreshList();
@@ -23,6 +22,7 @@ namespace Assignment_4._1._1
             }
             catch
             {
+                // Display all result if the search key doesn't exist
                 RefreshList();
             }
         }
@@ -34,10 +34,16 @@ namespace Assignment_4._1._1
             RefreshList();
         }
 
+        private void ConfirmDelete(object sender, EventArgs e)
+        {
+            buttonRemove.Enabled = removeCheckBox.Checked;
+        }
+
         private void RemoveContactEvent(object sender, EventArgs e)
         {
             contacts.Remove(removeTextBoxName.Text.ToLower());
             RefreshList();
+            removeCheckBox.Checked = false;
         }
 
         private void RefreshList()
@@ -52,19 +58,11 @@ namespace Assignment_4._1._1
             AddToContacts(new Person("John", "Smith", "123-456-2385", "456-222-1111", "New York City"));
             AddToContacts(new Person("Alice", "Smith", "123-456-2386", "456-222-1111", "New York City"));
             AddToContacts(new Person("Bryce", "Johnson", "345-678-3752", "456-222-1133", "San Francisco"));
-
         }
         private void AddToContacts(Person person)
         {
-            //contacts[person.FullName.ToLower()] = person;
-            try
-            {
-                contacts.Add(person.FullName.ToLower(), person);
-            }
-            catch
-            {
-                contacts[person.FullName.ToLower()] = person;
-            }
+            try { contacts.Add(person.FullName.ToLower(), person); }
+            catch { contacts[person.FullName.ToLower()] = person; }
         }
 
 
